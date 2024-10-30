@@ -5,12 +5,21 @@
 
 const clickedTitleHandler = function() {
     console.log('Link was clicked!', event);
-
     /* remove class 'active' from all article links  */
-    //argLink.classList.remove('active');
-    /* add class 'active' to the clicked link */
+    const activeLinks = document.querySelectorAll('.titles a.active');
 
+    for(let activeLink of activeLinks){
+        activeLink.classList.remove('active');
+    }
+
+    /* add class 'active' to the clicked link */
+    
     /* remove class 'active' from all articles */
+    const activeArticles = document.querySelectorAll('article.post.active');
+
+    for(let activeArticle of activeArticles){
+        activeArticle.classList.remove('active');
+    }
 
     /* get 'href' attribute from the clicked link */
 
@@ -21,6 +30,6 @@ const clickedTitleHandler = function() {
 
 const links = document.querySelectorAll('.titles a');
 
-for(const link of links) {
+for(let link of links) {
     link.addEventListener('click', clickedTitleHandler);
 }
