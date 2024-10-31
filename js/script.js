@@ -31,7 +31,6 @@
 
         /* find the correct article using the selector (value of 'href' attribute) */
         const correctArticle = document.querySelector(hrefAttributeLink);
-        console.log(correctArticle);
 
         /* add class 'active' to the correct article */
         correctArticle.classList.add('active');
@@ -63,7 +62,6 @@
 
         titleList.innerHTML = html;
         const links = document.querySelectorAll('.titles a');
-        console.log('links: ', links);
 
         for(let link of links) {
             link.addEventListener('click', clickedTitleHandler);

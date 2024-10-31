@@ -22,6 +22,7 @@ body {
   font-weight: 300;
   font-size: 16px;
   line-height: 1.7;
+  margin: 0;
 }
 
 .container {
@@ -66,12 +67,18 @@ body {
 
 /* Logo */
 
-.logo {
-  font-family: $font-logo;
-  font-weight: 400;
-  font-size: 104px;
-  line-height: 1;
-  text-align: center;
+header {
+  background: url('./../images/pexels-jessbaileydesign-867483.jpg') 0/cover no-repeat;
+  margin: 0;
+  padding: 30px;
+  width: 100%;
+  .logo {
+    font-family: $font-logo;
+    font-weight: 400;
+    font-size: 104px;
+    line-height: 1;
+    text-align: center;
+  }
 }
 
 /* Lists */
