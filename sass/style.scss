@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
 
 /* Variables */
 
@@ -9,6 +10,7 @@ $color-silver: #eff2f5;
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
+$font-titles: 'Roboto', sans-serif;
 
 /* Global */
 
@@ -78,19 +80,28 @@ header {
   .logo {
     font-family: $font-logo;
     font-weight: 400;
-    font-size: 104px;
+    font-size: 9rem;
     line-height: 1;
     text-align: center;
-    text-shadow: 2px 2px 5px $color-light;
+    text-shadow: 3px 3px 5px $color-light;
   }
 }
 
+
 /* Lists */
+
+.titles {
+  font-size: 1.2rem;
+}
 
 .list {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  li {
+    font-family: $font-titles;
+  }
   .active {
     font-weight: bold;
   }
@@ -114,6 +125,11 @@ header {
 
 .post {
   display: none;
+
+  .post-title {
+    font-size: 1.5rem;
+  }
+
   &.active {
     display: block;
   }
@@ -127,5 +143,25 @@ header {
   display: flex;
   p {
     margin: 0 10px 0 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .titles li {
+    display: inline-block;
+    padding-right: 8px;
+  }
+
+  .sidebar {
+    display: flex;
+    justify-content: center;
+    
+    .tags-wrapper, .authors-wrapper {
+      padding: 5% ;
+    }
   }
 }
