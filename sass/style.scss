@@ -12,6 +12,8 @@ $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
 $font-titles: 'Roboto', sans-serif;
 
+$transition: all 2s;
+
 /* Global */
 
 *, *::before, *::after {
@@ -24,7 +26,7 @@ body {
   color: $color-dark;
   font-weight: 300;
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.5;
   margin: 0;
 }
 
@@ -34,7 +36,7 @@ body {
 }
 
 .section-title {
-  font-size: 22px;
+  font-size: 1.2rem;
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
@@ -123,15 +125,27 @@ header {
 
 /* Post */
 
-.post {
-  display: none;
+.posts {
+  position: relative;
+  height: 100vh;
 
-  .post-title {
-    font-size: 1.5rem;
-  }
-
-  &.active {
+  .post {
     display: block;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 8%;
+    overflow-y: auto;
+    transition: $transition;
+    z-index: 0;
+
+    &.active {
+      opacity: 1;
+      z-index: 2;   
+    }
   }
 }
 
@@ -146,22 +160,82 @@ header {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
+  body {
+    font-size: 12px;
+    line-height: 1.3;
+
+    header .logo {
+      font-size: 5rem;
+      padding: 10px;
+    }
+    
+    .wrapper {
+      flex-direction: column;
+
+      .section-title {
+        font-size: .9rem;
+      }
+
+      .titles {
+        font-size: .5rem;
+    
+        li {
+          display: inline-block;
+          padding-right: 8px;
+        }
+      }
+
+      .sidebar {
+        display: flex;
+        justify-content: center;
+        flex: 50%;
+        
+        .tags-wrapper, .authors-wrapper {
+          padding: 3% 5% ;
+        }
+      }
+
+      .posts {
+        padding: 55% 20%;
+
+        .post {
+          padding: 5% 20%;
+        }
+      }
+    }   
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { 
   .wrapper {
     flex-direction: column;
-  }
 
-  .titles li {
-    display: inline-block;
-    padding-right: 8px;
-  }
+    .sidebar {
+      display: flex;
+      justify-content: center;
+      flex: 50%;
 
-  .sidebar {
-    display: flex;
-    justify-content: center;
-    
-    .tags-wrapper, .authors-wrapper {
-      padding: 5% ;
+      .titles {
+        font-size: .9rem;
+        
+        li {
+          display: inline-block;
+          padding-right: 8px;
+        }
+      }
+      
+      .tags-wrapper, .authors-wrapper {
+        padding: 3% 5% ;
+      }
+    }
+
+    .posts {
+      padding: 35% 20%;
+
+      .post {
+        padding: 5% 20%;
+      }
     }
   }
 }
