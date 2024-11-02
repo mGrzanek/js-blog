@@ -41,7 +41,6 @@
         /* remove contents of titleList */
         const titleList = document.querySelector(optTitleListSelector);
         titleList.innerHTML = '';
-        let html = '';
 
         /* for each article */
         const articles = document.querySelectorAll(optArticleSelector);
@@ -57,10 +56,9 @@
             linkHtml = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
 
             /* insert link into titleList */
-            html += linkHtml;
+            titleList.insertAdjacentHTML("beforeend", linkHtml);
         }     
 
-        titleList.innerHTML = html;
         const links = document.querySelectorAll('.titles a');
 
         for(let link of links) {
