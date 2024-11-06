@@ -7,7 +7,8 @@
     optTitlesActive = '.titles a.active',
     optTitles = '.titles a',
     optArticleActive = 'article.post.active',
-    optArticleTagsSelector  = '.post-tags .list';
+    optArticleTagsSelector  = '.post-tags .list',
+    optArticleAuthorSelector = '.post-author';
 
   const generateTitleLinks = function(customSelector = '') {
 
@@ -149,14 +150,30 @@
 
       /* add tagClickHandler as event listener for that link */
       tagLink.addEventListener('click', tagClickHandler);
-      
+
     /* END LOOP: for each link */
     }
   };
   
+  const generateAuthors = function(){
+    /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+    /* START LOOP: for every article: */
+    for(let article of articles) {
+      /* find author wrapper */
+      const authorWrapper = article.querySelector(optArticleAuthorSelector);
+      /* get author from data-author attribute*/
+      const authorAttribute = article.getAttribute('data-author');
+      /* generate html link with author */
+      const linkHtml = `<a href="#author-${authorAttribute}">${authorAttribute}</a>`;
+      /* add generated code to author wrapper */
+      authorWrapper.insertAdjacentHTML('beforeend', linkHtml);
+    /* END LOOP */
+    }
+  };
+
   generateTitleLinks();
-
   generateTags();
-
   addClickListenersToTags();
+  generateAuthors();
 }
