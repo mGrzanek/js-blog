@@ -172,8 +172,35 @@
     }
   };
 
+  const authorClickHandler = function(event) {
+    /* add preventDefault */
+    event.preventDefault();
+    /* add clickedElement constant with this */
+    const clickedElement = this;
+    /*  get href attribute from clickedElement*/
+    const href = clickedElement.getAttribute('href');
+    /* extract author from href */
+    const author = href.replace('#author-', '');
+    /* execute function "generateTitleLinks" with article selector as argument */
+    generateTitleLinks(`[data-author="${author}"]`);
+  };
+
+  const addClickListenersToAuthors = function() {
+    /* find all links to authors */
+    const authorLinks = document.querySelectorAll('.post-author a');
+
+    /*START LOOP for each author link */
+    for(let authorLink of authorLinks){
+
+      /* add authorClickHandler as event listener for that link */
+      authorLink.addEventListener('click', authorClickHandler);
+    /* END LOOP */
+    }
+  };
+
   generateTitleLinks();
   generateTags();
   addClickListenersToTags();
   generateAuthors();
+  addClickListenersToAuthors();
 }
