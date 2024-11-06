@@ -6,7 +6,8 @@
     optActive = 'active',
     optTitlesActive = '.titles a.active',
     optTitles = '.titles a',
-    optArticleActive = 'article.post.active';
+    optArticleActive = 'article.post.active',
+    optArticleTagsSelector  = '.post-tags .list';
 
   const generateTitleLinks = function() {
 
@@ -69,5 +70,38 @@
     correctArticle.classList.add(optActive);
   };
 
+  const generateTags = function(){
+    /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+
+    /* START LOOP: for every article: */
+    for(let article of articles) {
+
+      /* find tags wrapper */
+      const tagsWrapper = article.querySelector(optArticleTagsSelector);
+
+      /* get tags from data-tags attribute */
+      const tagsArticle = article.getAttribute('data-tags');
+
+      /* split tags into array */
+      const tagsArray = tagsArticle.split(' ');
+
+      /* START LOOP: for each tag */
+      for(let tag of tagsArray) {
+
+        /* generate HTML of the link */
+        const linkHtml = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+
+        /* add generated code to html variable */
+        tagsWrapper.insertAdjacentHTML('beforeend', linkHtml);
+
+        /* END LOOP: for each tag */
+      }      
+    /* END LOOP: for every article: */
+    }
+  };
+  
   generateTitleLinks();
+
+  generateTags();
 }
