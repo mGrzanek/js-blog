@@ -9,7 +9,9 @@
     optArticleActive = 'article.post.active',
     optArticleTagsSelector  = '.post-tags .list',
     optArticleAuthorSelector = '.post-author',
-    optTagsListSelector = '.tags.list';
+    optTagsListSelector = '.tags.list',
+    optCloudClassCount = 5,
+    optCloudClassPrefix = 'tag-size-';
 
   const generateTitleLinks = function(customSelector = '') {
 
@@ -72,6 +74,34 @@
     correctArticle.classList.add(optActive);
   };
 
+  const calculateTagsParams = function(tags) {
+    const params = {
+      min: 999999,
+      max: 0
+    };
+
+    for(let tag in tags){
+      if(tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+
+      if(tags[tag] < params.min) {
+        params.min = tags[tag];
+      }
+    }
+
+    return params;
+  };
+
+  const calculateTagClass = function(count, params) {
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+
+    return optCloudClassPrefix+classNumber;
+  };
+
   const generateTags = function(){
     /* [NEW] create a new variable allTags with an empty object */
     let allTags = {};
@@ -115,13 +145,16 @@
     /* [NEW] find list of tags in right column */
     const tagList = document.querySelector(optTagsListSelector);
 
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams);
+
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tagObj in allTags){
 
       /* [NEW] generate code of a link and add it to tagList */
-      const tagObjLink = `<li><a href="#tag-${tagObj}">${tagObj}</a><span>(${allTags[tagObj]})</span></li>`;
+      const tagObjLink = `<li><a href="#tag-${tagObj}" class="${calculateTagClass(allTags[tagObj], tagsParams)}">${tagObj}</a><span>(${allTags[tagObj]})</span></li>`;
       tagList.insertAdjacentHTML('beforeend', tagObjLink);
-      
+
     /* [NEW] END LOOP: for each tag in allTags: */
     }
   };
