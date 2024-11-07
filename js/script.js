@@ -73,6 +73,9 @@
   };
 
   const generateTags = function(){
+    /* [NEW] create a new variable allTags with an empty array */
+    let allTags = [];
+
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -94,13 +97,25 @@
         /* generate HTML of the link */
         const linkHtml = `<li><a href="#tag-${tag}">${tag}</a></li>`;
 
-        /* add generated code to html variable */
+        /* [NEW] check if this link is NOT already in allTags */
+        if(allTags.indexOf(linkHtml) == -1) {
+
+          /* [NEW] add generated code to allTags array */
+          allTags.push(linkHtml);
+        }
+
+        /* add generated code to wrapper */
         tagsWrapper.insertAdjacentHTML('beforeend', linkHtml);
 
         /* END LOOP: for each tag */
       }      
     /* END LOOP: for every article: */
     }
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [NEW] add html from allTags to tagList */
+    tagList.insertAdjacentHTML('beforeend', allTags.join(' '));
   };
 
   const tagClickHandler = function (event){
