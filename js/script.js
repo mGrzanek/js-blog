@@ -8,7 +8,8 @@
     optTitles = '.titles a',
     optArticleActive = 'article.post.active',
     optArticleTagsSelector  = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author';
+    optArticleAuthorSelector = '.post-author',
+    optTagsListSelector = '.tags.list';
 
   const generateTitleLinks = function(customSelector = '') {
 
