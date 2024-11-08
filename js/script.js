@@ -11,7 +11,8 @@
     optArticleAuthorSelector = '.post-author',
     optTagsListSelector = '.tags.list',
     optCloudClassCount = 5,
-    optCloudClassPrefix = 'tag-size-';
+    optCloudClassPrefix = 'tag-size-',
+    optAuthorsListSelector = '.authors.list';
 
   const generateTitleLinks = function(customSelector = '') {
 
@@ -213,6 +214,9 @@
   };
   
   const generateAuthors = function(){
+    /* create new variable allAuthors with empty object */
+    let allAuthors = {};
+
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
     /* START LOOP: for every article: */
@@ -222,9 +226,25 @@
       /* get author from data-author attribute*/
       const authorAttribute = article.getAttribute('data-author');
       /* generate html link with author */
-      const linkHtml = `<a href="#author-${authorAttribute}">${authorAttribute}</a>`;
+      const linkHtml = `<a href="#author-${authorAttribute}">${authorAttribute}</a>`;  
+      /* check if this link isn't already in allAuthors */
+      if(!allAuthors[authorAttribute]){
+        allAuthors[authorAttribute] = 1;
+      } else {
+        allAuthors[authorAttribute]++;
+      }
       /* add generated code to author wrapper */
       authorWrapper.insertAdjacentHTML('beforeend', linkHtml);
+    /* END LOOP */
+    }
+    /* find list of authors in sidebar */
+    const authorSidebarsWrapper = document.querySelector(optAuthorsListSelector);
+
+    /* START LOOP for each author in allAuthors */
+    for(let author in allAuthors){
+      /* generate code of a link and add it to authorSidebarWrapper */
+      const authorLinkSidebar = `<li><a href="#author-${author}"><span class="author-name">${author}(${allAuthors[author]})</span></a><li>`;
+      authorSidebarsWrapper.insertAdjacentHTML('beforeend', authorLinkSidebar);
     /* END LOOP */
     }
   };
