@@ -264,7 +264,7 @@
     /* START LOOP for each author in allAuthors */
     for(let author in allAuthors){
       /* generate code of a link and add it to authorSidebarWrapper */
-      const authorLinkSidebar = `<li><a href="#author-${author}"><span class="author-name">${author}(${allAuthors[author]})</span></a><li>`;
+      const authorLinkSidebar = `<li><a href="#author-${author}"><span class="author-name">${author}</span></a><span> (${allAuthors[author]})</span><li>`;
       authorSidebarsWrapper.insertAdjacentHTML('beforeend', authorLinkSidebar);
     /* END LOOP */
     }
