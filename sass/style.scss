@@ -6,6 +6,11 @@
 $color-light: #fff;
 $color-dark: #444;
 $color-silver: #eff2f5;
+$color-purple: #8c7ae6;
+$color-pylon: #00a8ff;
+$color-deep: #130f40;
+$color-sky: #c7ecee;
+$color-grass: #badc58;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -115,6 +120,41 @@ header {
   }
 }
 
+.tags {
+  li {
+    display: inline-block;
+    padding-right: 5px;
+
+    .tag-size- {
+
+      &5 {
+        color: $color-purple;
+        font-size: 1.5rem;
+      }
+
+      &4 {
+        font-size: 1.3rem;
+        color: $color-pylon;
+      }
+
+      &3 {
+        font-size: 1rem;
+        color: $color-grass;
+      }
+
+      &2 {
+        font-size: .8rem;
+        color: $color-sky;
+      }
+
+      &1 {
+        font-size: .5rem;
+        color: $color-deep;
+      }
+    }
+  }
+}
+
 /* Authors */
 
 .authors {
@@ -147,17 +187,19 @@ header {
       z-index: 2;   
     }
   }
-}
 
-.post-author {
-  font-style: italic;
-}
-
-.post-tags {
-  display: flex;
-  p {
-    margin: 0 10px 0 0;
+  .post-author a{
+    font-style: italic;
+    color: $color-dark;
   }
+
+  .post-tags {
+    display: flex;
+    p {
+      margin: 0 10px 0 0;
+    }
+  }
+  
 }
 
 @media (max-width: 767px) {
@@ -192,6 +234,41 @@ header {
         justify-content: center;
         
         .tags-wrapper, .authors-wrapper {
+          flex: 50% 0 0;
+        }
+  
+        .tags-wrapper {
+          padding: 3% 10%;
+
+          .tags {
+            li {
+              .tag-size- {
+        
+                &5 {
+                  font-size: 1.2rem;
+                }
+          
+                &4 {
+                  font-size: 1rem;
+                }
+          
+                &3 {
+                  font-size: .9rem;
+                }
+          
+                &2 {
+                  font-size: .7rem;
+                }
+          
+                &1 {
+                  font-size: .5rem;
+                }
+              }
+            }
+          }
+        }
+  
+        .authors-wrapper {
           padding: 3% 5% ;
         }
       }
@@ -226,6 +303,14 @@ header {
       }
       
       .tags-wrapper, .authors-wrapper {
+        flex: 50% 0 0;
+      }
+
+      .tags-wrapper {
+        padding: 3% 10%;
+      }
+
+      .authors-wrapper {
         padding: 3% 5% ;
       }
     }

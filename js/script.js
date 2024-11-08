@@ -125,7 +125,7 @@
       for(let tag of tagsArray) {
 
         /* generate HTML of the link */
-        const linkHtml = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+        const linkHtml = `<li><a href="#tag-${tag}">#${tag}</a></li>`;
 
         /* [NEW] check if this link is NOT already in allTags */
         if(!allTags[tag]) {
@@ -152,7 +152,7 @@
     for(let tagObj in allTags){
 
       /* [NEW] generate code of a link and add it to tagList */
-      const tagObjLink = `<li><a href="#tag-${tagObj}" class="${calculateTagClass(allTags[tagObj], tagsParams)}">${tagObj}</a><span>(${allTags[tagObj]})</span></li>`;
+      const tagObjLink = `<li><a href="#tag-${tagObj}" class="${calculateTagClass(allTags[tagObj], tagsParams)}">${tagObj}</a></li>`;
       tagList.insertAdjacentHTML('beforeend', tagObjLink);
 
     /* [NEW] END LOOP: for each tag in allTags: */
