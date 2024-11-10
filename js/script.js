@@ -1,5 +1,13 @@
 'use strict';
 {
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    articleTag: Handlebars.compile(document.querySelector('#template-article-tag').innerHTML),
+    tagCloud: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML),
+    articleAuthor: Handlebars.compile(document.querySelector('#template-article-author').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-authors-links').innerHTML)
+  };
+  
   const opts = {
     tagSizes: {
       count: 5,
@@ -53,7 +61,8 @@
       const articleTitle = article.querySelector(select.article.title).innerHTML;
 
       /* create HTML of the link */
-      const linkHtml = `<li><a href="#${articleId}"><span>${articleTitle}</span></a></li>`;
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHtml = templates.articleLink(linkHTMLData);
 
       /* insert link into titleList */
       titleList.insertAdjacentHTML('beforeend', linkHtml);
@@ -148,7 +157,8 @@
       for(let tag of tagsArray) {
 
         /* generate HTML of the link */
-        const linkHtml = `<li><a href="#tag-${tag}">#${tag}</a></li>`;
+        const linkHTMLData = {tagName: tag};
+        const linkHtml = templates.articleTag(linkHTMLData);
 
         /* [NEW] check if this link is NOT already in allTags */
         if(!allTags[tag]) {
@@ -175,7 +185,8 @@
     for(let tagObj in allTags){
 
       /* [NEW] generate code of a link and add it to tagList */
-      const tagObjLink = `<li><a href="#tag-${tagObj}" class="${calculateTagClass(allTags[tagObj], tagsParams)}">${tagObj}</a></li>`;
+      const linkHTMLData = {tagName: tagObj, count: allTags[tagObj], className: calculateTagClass(allTags[tagObj], tagsParams)};
+      const tagObjLink = templates.tagCloud(linkHTMLData);
       tagList.insertAdjacentHTML('beforeend', tagObjLink);
 
     /* [NEW] END LOOP: for each tag in allTags: */
@@ -248,7 +259,8 @@
       /* get author from data-author attribute*/
       const authorAttribute = article.getAttribute('data-author');
       /* generate html link with author */
-      const linkHtml = `<a href="#author-${authorAttribute}">${authorAttribute}</a>`;  
+      const linkHtmlData = {author: authorAttribute};
+      const linkHtml = templates.articleAuthor(linkHtmlData);
       /* check if this link isn't already in allAuthors */
       if(!allAuthors[authorAttribute]){
         allAuthors[authorAttribute] = 1;
@@ -265,7 +277,8 @@
     /* START LOOP for each author in allAuthors */
     for(let author in allAuthors){
       /* generate code of a link and add it to authorSidebarWrapper */
-      const authorLinkSidebar = `<li><a href="#author-${author}">${author}</a><span> (${allAuthors[author]})</span><li>`;
+      const linkHtmlData = {author: author, count: allAuthors[author]};
+      const authorLinkSidebar = templates.authorLink(linkHtmlData);
       authorSidebarsWrapper.insertAdjacentHTML('beforeend', authorLinkSidebar);
     /* END LOOP */
     }

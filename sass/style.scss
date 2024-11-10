@@ -12,6 +12,7 @@ $color-deep: #130f40;
 $color-sky: #c7ecee;
 $color-grass: #badc58;
 $color-concerte: #95a5a6;
+$color-pencil: #576574;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -177,7 +178,7 @@ header {
     
     a {
       font-style: italic;
-      color: $color-dark;
+      color: $color-pencil;
     }
 
     span {
