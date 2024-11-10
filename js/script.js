@@ -25,6 +25,7 @@
         tags: 'a[href^="#tag-"]',
         tagsActive: 'a.active[href^="#tag-"]',
         authors: 'a[href^="#author-"]',
+        authorsActive: 'a.active[href^="#author-"]',
         titles: '.titles a',
         titlesActive: '.titles a.active',
       },
@@ -293,6 +294,21 @@
     const href = clickedElement.getAttribute('href');
     /* extract author from href */
     const author = href.replace('#author-', '');
+    /* find all active author links */
+    const authorActiveLinks = document.querySelectorAll(select.all.linksTo.authorsActive);
+    /* START LOOP for author active links */
+    for(let authorActive of authorActiveLinks){
+      authorActive.classList.remove(select.class.active);
+    /* END LOOP */
+    }
+    /* find all author with href attribute equal to the href constant */
+    const authorsCurrent = document.querySelectorAll(`a[href="${href}"]`);
+    /* START LOOP for each found author link */
+    for(let authorCurrent of authorsCurrent){
+      /* add active class */
+      authorCurrent.classList.add(select.class.active);
+      /* END LOOP */
+    }
     /* execute function "generateTitleLinks" with article selector as argument */
     generateTitleLinks(`[data-author="${author}"]`);
   };
