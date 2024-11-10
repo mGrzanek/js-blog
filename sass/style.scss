@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Roboto:ital@1&display=swap');
 
 /* Variables */
 
@@ -11,11 +11,13 @@ $color-pylon: #00a8ff;
 $color-deep: #130f40;
 $color-sky: #c7ecee;
 $color-grass: #badc58;
+$color-concerte: #95a5a6;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
-$font-titles: 'Roboto', sans-serif;
+$font-titles: "Allura", cursive;
+$font-links: "Roboto", serif;
 
 $transition: all 2s;
 
@@ -98,7 +100,11 @@ header {
 /* Lists */
 
 .titles {
-  font-size: 1.2rem;
+    font-size: 1.8rem;
+
+    a {
+      font-family: $font-titles;
+    }
 }
 
 .list {
@@ -107,7 +113,11 @@ header {
   padding: 0;
 
   li {
-    font-family: $font-titles;
+    font-family: $font-links;
+
+    a {
+      text-decoration: none;
+    }
   }
   .active {
     font-weight: bold;
@@ -120,7 +130,11 @@ header {
   }
 }
 
+/* Tags */
+
 .tags {
+  padding-bottom: 20px;
+  
   li {
     display: inline-block;
     padding-right: 5px;
@@ -160,6 +174,15 @@ header {
 .authors {
   li {
     margin-bottom: 12px;
+    
+    a {
+      font-style: italic;
+      color: $color-dark;
+    }
+
+    span {
+      color: $color-concerte;
+    }
   }
 }
 

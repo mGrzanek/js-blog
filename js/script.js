@@ -15,6 +15,7 @@
       },
       linksTo: {
         tags: 'a[href^="#tag-"]',
+        tagsActive: 'a.active[href^="#tag-"]',
         authors: 'a[href^="#author-"]',
         titles: '.titles a',
         titlesActive: '.titles a.active',
@@ -195,7 +196,7 @@
     const tag = href.replace('#tag-', '');
 
     /* find all tag links with class active */
-    const tagLinksActive = document.querySelectorAll('a.active[href^="#tag-"]');
+    const tagLinksActive = document.querySelectorAll(select.all.linksTo.tagsActive);
 
     /* START LOOP: for each active tag link */
     for(let tagLinkActive of tagLinksActive){
@@ -222,7 +223,7 @@
 
   const addClickListenersToTags = function(){
     /* find all links to tags */
-    const tagLinks = document.querySelectorAll('.post-tags .list a');
+    const tagLinks = document.querySelectorAll(select.all.linksTo.tags);
 
     /* START LOOP: for each link */
     for(let tagLink of tagLinks){
@@ -264,7 +265,7 @@
     /* START LOOP for each author in allAuthors */
     for(let author in allAuthors){
       /* generate code of a link and add it to authorSidebarWrapper */
-      const authorLinkSidebar = `<li><a href="#author-${author}"><span class="author-name">${author}</span></a><span> (${allAuthors[author]})</span><li>`;
+      const authorLinkSidebar = `<li><a href="#author-${author}">${author}</a><span> (${allAuthors[author]})</span><li>`;
       authorSidebarsWrapper.insertAdjacentHTML('beforeend', authorLinkSidebar);
     /* END LOOP */
     }
@@ -285,7 +286,7 @@
 
   const addClickListenersToAuthors = function() {
     /* find all links to authors */
-    const authorLinks = document.querySelectorAll('.post-author a');
+    const authorLinks = document.querySelectorAll(select.all.linksTo.authors);
 
     /*START LOOP for each author link */
     for(let authorLink of authorLinks){
